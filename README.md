@@ -1,12 +1,17 @@
 # Q & A Matching
 
-* [Q & A Matching Gallery GitHub repository](https://github.com/Azure/MachineLearningSamples-QnAMatching)
+## Link of the Gallery GitHub repository
+Following is the link to the public GitHub repository: 
+
+[https://github.com/Azure/MachineLearningSamples-QnAMatching](https://github.com/Azure/MachineLearningSamples-QnAMatching)
+
 
 ## Prerequisites
 
 The prerequisites to run this example are as follows:
 
-1. Make sure that you have properly installed Azure Machine Learning Workbench by following the [installation guide](https://github.com/Azure/ViennaDocs/blob/master/Documentation/Installation.md).
+1. An [Azure account](https://azure.microsoft.com/en-us/free/) (free trials are available).
+2. An installed copy of [Azure Machine Learning Workbench](./overview-what-is-azure-ml.md) following the [quick start installation guide](./quick-start-installation.md) to install the program and create a workspace.
 3. This example could be run on any compute context. However, it is recommended to run it on a multi-core machine with at least of 16-GB memory and 5-GB disk space.
 
 ## Introduction
@@ -113,7 +118,7 @@ Two different evaluation metrics are used to assess performance.
 The evaluation is demonstrated in `Part_3_Model_Training_and_Evaluation.ipynb`.
 
 
-## Conclusion & Next Steps
+## Conclusion
 
 This example highlights how to use well-known text analytics techniques, such as phrase learning and text classification, to produce a robust model. It also showcases how Azure Machine Learning Workbench can help with interactive development and track model performance. 
 
@@ -130,9 +135,6 @@ Timothy J. Hazen, Fred Richardson, [_Modeling Multiword Phrases with Constrained
 
 Timothy J. Hazen, [_MCE Training Techniques for Topic Identification of Spoken Audio Documents_](http://ieeexplore.ieee.org/abstract/document/5742980/) in IEEE Transactions on Audio, Speech, and Language Processing, vol. 19, no. 8, pp. 2451-2460, Nov. 2011.
 
-## Acknowledgement
-
-Thanks Chris Stone for preparing the datasets. Thanks Parry Husbands and Ahmet Gyger for deep involvement of implementing this work on the Azure Machine Learning Workbench.
 
 ## Contact
 
