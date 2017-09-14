@@ -7,11 +7,12 @@
 
 import pandas as pd
 import numpy as np
-import os, warnings
+import os, sys, warnings
 from azureml.logging import get_azureml_logger
+sys.path.append("")
 from modules.feature_extractor import (tokensToIds, countMatrix, priorProbabilityAnswer, posterioriProb, 
-                               feature_selection, featureWeights, wordProbabilityInAnswer, 
-                               wordProbabilityNotinAnswer, normalizeTF, softmax)
+                                       feature_selection, featureWeights, wordProbabilityInAnswer, 
+                                       wordProbabilityNotinAnswer, normalizeTF, softmax)
 warnings.filterwarnings("ignore")
 
 

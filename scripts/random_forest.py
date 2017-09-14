@@ -8,13 +8,14 @@
 
 import pandas as pd
 import numpy as np
-import os, warnings
+import os, sys, warnings
 from azureml.logging import get_azureml_logger
 from sklearn.ensemble import RandomForestClassifier
+sys.path.append("")
 from modules.feature_extractor import (tokensToIds, countMatrix, priorProbabilityAnswer, posterioriProb, 
-                               feature_selection, featureWeights, wordProbabilityInAnswer, 
-                               wordProbabilityNotinAnswer, normalizeTF, softmax)
-from scripts.naive_bayes import (rank)
+                                       feature_selection, featureWeights, wordProbabilityInAnswer, 
+                                       wordProbabilityNotinAnswer, normalizeTF, softmax)
+from naive_bayes import (rank)
 warnings.filterwarnings("ignore")
 
 
