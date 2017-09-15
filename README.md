@@ -1,10 +1,5 @@
 # Q & A Matching
 
-## Link of the Gallery GitHub repository
-Following is the link to the public GitHub repository: 
-
-[https://github.com/Azure/MachineLearningSamples-QnAMatching](https://github.com/Azure/MachineLearningSamples-QnAMatching)
-
 
 ## Introduction
 
