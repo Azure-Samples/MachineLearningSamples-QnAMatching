@@ -340,18 +340,10 @@ def ApplyPhraseRewrites(rankedNgrams,textData,learnedPhrases,
     return
 
 # run the full iterative phrase learning process.
-def ApplyPhraseLearning(textData,learnedPhrases,learningSettings):
+def ApplyPhraseLearning(textData,learnedPhrases,maxNumPhrases,maxPhraseLength,maxPhrasesPerIter,minCount,functionwordHash,blacklistHash={},verbose=False):
     
     stop = 0
     iterNum = 0
-
-    # Get the learning parameters from the structue passed in by thee calling function
-    maxNumPhrases = learningSettings.maxNumPhrases
-    maxPhraseLength = learningSettings.maxPhraseLength
-    functionwordHash = learningSettings.functionwordHash
-    blacklistHash = learningSettings.blacklistHash
-    verbose = learningSettings.verbose
-    minCount = learningSettings.minInstanceCount
     
     # Start timing the process
     functionStartTime = time.clock()
@@ -374,8 +366,8 @@ def ApplyPhraseLearning(textData,learnedPhrases,learningSettings):
         # Incorporate top ranked phrases into phrase list
         # and rewrite the text to use these phrases
         maxPhrasesToAdd = maxNumPhrases - numPhrasesLearned
-        if maxPhrasesToAdd > learningSettings.maxPhrasesPerIter:
-            maxPhrasesToAdd = learningSettings.maxPhrasesPerIter
+        if maxPhrasesToAdd > maxPhrasesPerIter:
+            maxPhrasesToAdd = maxPhrasesPerIter
         ApplyPhraseRewrites(rankedNgrams,textData,learnedPhrases,maxPhrasesToAdd,maxPhraseLength,verbose)
         numPhrasesAdded = len(learnedPhrases) - numPhrasesLearned
 
