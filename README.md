@@ -6,14 +6,6 @@ Following is the link to the public GitHub repository:
 [https://github.com/Azure/MachineLearningSamples-QnAMatching](https://github.com/Azure/MachineLearningSamples-QnAMatching)
 
 
-## Prerequisites
-
-The prerequisites to run this example are as follows:
-
-1. An [Azure account](https://azure.microsoft.com/en-us/free/) (free trials are available).
-2. An installed copy of [Azure Machine Learning Workbench](./overview-what-is-azure-ml) following the [quick start installation guide](./quick-start-installation) to install the program and create a workspace.
-3. This example could be run on any compute context. However, it is recommended to run it on a multi-core machine with at least of 16-GB memory and 5-GB disk space.
-
 ## Introduction
 
 Answering open ended questions is difficult and often requires manual effort from subject matter experts (SMEs). To help reduce the demands on internal SMEs, companies often create lists of Frequently Asked Questions (FAQs) as a means of assisting users. This example showcases various effective machine learning methods to match open ended queries to pre-existing FAQ question/answers pairs. This example demonstrates an easy development process for building such a solution using the Azure Machine Learning Workbench. 
@@ -29,6 +21,15 @@ The key steps required to deliver this solution are as follows:
 2. Learn informative phrases, which are multi-word sequences that provide more information when viewed in sequence than when treated independently.
 3. Extract features from text data.
 4. Train text classification models and evaluate model performance.
+
+
+## Prerequisites
+
+The prerequisites to run this example are as follows:
+
+1. An [Azure account](https://azure.microsoft.com/en-us/free/) (free trials are available).
+2. An installed copy of [Azure Machine Learning Workbench](./overview-what-is-azure-ml) following the [quick start installation guide](./quick-start-installation) to install the program and create a workspace.
+3. This example could be run on any compute context. However, it is recommended to run it on a multi-core machine with at least of 16-GB memory and 5-GB disk space.
 
 
 ## Data description
@@ -91,7 +92,7 @@ The files in this example are organized as follows.
 | `scripts/random_forest.py` | Python file | The Python to tune hyper-parameters in the Random Forest model
 | `README.md` | Markdown  file | The README markdown file
 
-**NOTE**: The series of notebooks is built under Python 3.5.
+>**NOTE**: The series of notebooks is built under Python 3.5.
 
 ### Data ingestion  and transformation
 
