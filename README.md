@@ -21,9 +21,9 @@ Answering open ended questions is difficult and often requires manual effort fro
 
 ## Overview
 
-This example addresses the problem of mapping user questions to pre-existing Question & Answer (Q&A) pairs as is typically provided in a list of Frequently Asked Questions (that is, a FAQ) or in the Q&A pairs present on websites like [Stack Overflow](https://stackoverflow.com/). There are many approaches to match a question to its correct answer, such as finding the answer that is the most similar to the question. However, this example solves the problem by approaching it from a different perspective. Open ended questions are matched to previously asked questions assuming that each answer in the FAQ can answer multiple semantically equivalent questions.
+This example addresses the problem of mapping user questions to pre-existing Question & Answer (Q&A) pairs as is typically provided in a list of Frequently Asked Questions (that is, a FAQ) or in the Q&A pairs present on websites like [Stack Overflow](https://stackoverflow.com/). There are many approaches to match a question to its correct answer, such as finding the answer that is the most similar to the question. However, in this example open ended questions are matched to previously asked questions by assuming that each answer in the FAQ can answer multiple semantically equivalent questions.
 
-The key learnings delivered by this example are as follows:
+The key steps required to deliver this solution are as follows:
 
 1. Clean and process text data.
 2. Learn informative phrases, which are multi-word sequences that provide more information when viewed in sequence than when treated independently.
@@ -31,17 +31,17 @@ The key learnings delivered by this example are as follows:
 4. Train text classification models and evaluate model performance.
 
 
-## Data Description
+## Data description
 
-The dataset used in this example is collected from [archive.org](https://archive.org/details/stackexchange). This data, Stack Exchange Data Dump, is an anonymized dump of all user-contributed content on the [Stack Exchange network](https://stackexchange.com/). Each site in the network is formatted as a separate archive consisting of XML files zipped via 7-zip using bzip2 compression. Each site archive includes Posts, Users, Votes, Comments, PostHistory, and PostLinks. 
+The dataset used in this example is a Stack Exchange Data Dump stored at [archive.org](https://archive.org/details/stackexchange). This data is an anonymized dump of all user-contributed content on the [Stack Exchange network](https://stackexchange.com/). Each site in the network is formatted as a separate archive consisting of XML files zipped via 7-zip using bzip2 compression. Each site archive includes Posts, Users, Votes, Comments, PostHistory, and PostLinks. 
 
-### Data Source
+### Data source
 
 This example uses the [Posts data (10 GB)](https://archive.org/download/stackexchange/stackoverflow.com-Posts.7z) and [PostLinks data (515 MB)](https://archive.org/download/stackexchange/stackoverflow.com-PostLinks.7z) from the Stack Overflow site. For complete schema information, see the [readme.txt](https://ia800500.us.archive.org/22/items/stackexchange/readme.txt). 
 
-`PostTypeId` in the Posts data indicates whether a post is a `Question` or an `Answer`. `PostLinkTypeId` in the PostLinks data indicates whether two posts are linked or duplicate. Question posts typically include some tags, which are keywords that categorize a question with other similar/duplicate questions. There are some tags with high frequency, such as `javascript`, `java`, `c#`, `php` etc., consist of a larger number of question posts. In this example, a subset of Q&A pairs with the `javascript` tag is extracted.
+The `PostTypeId` field in the Posts data indicates whether a post is a `Question` or an `Answer`. The `PostLinkTypeId` field in the PostLinks data indicates whether two posts are linked or duplicate. Question posts typically include some tags, which are keywords that categorize a question with other similar/duplicate questions. There are some tags with high frequency, such as `javascript`, `java`, `c#`, `php` etc., consist of a larger number of question posts. In this example, a subset of Q&A pairs with the `javascript` tag is extracted.
 
-In addition, a question post may relate with multiple answer posts and duplicate question posts. To construct a list of FAQ from these two datasets, some data collection criteria are considered. The three sets of compiled data are selected using a SQL script, which is not included in this example. But the data description is as follows. 
+Additionionally, a question post may be related to multiple answer posts or duplicate question posts. To construct a list of FAQ from these two datasets, some data collection criteria are considered. The three sets of compiled data are selected using a SQL script, which is not included in this example. The resulting data description is as follows:
 
 - `Original Questions (Q)`: Question posts are asked and answered on Stack Overflow site.
 - `Duplications (D)`: Question posts duplicate other pre-existing questions (`PostLinkTypeId = 3`), which are the original questions. Duplications are considered as semantically equivalent to the original questions in the sense that the answer provided to the original question also answers the new duplicate question.
@@ -51,7 +51,7 @@ The combination of these three datasets creates Q&A pairs where an answer (A) is
 
 ![Data_Diagram](https://raw.githubusercontent.com/Azure/MachineLearningSamples-QnAMatching/master/Image/data_diagram.png?token=APoO9sOVqe3-Tl2y9DKuaO3XHxeaWAzqks5ZwsqawA%3D%3D)
 
-### Data Structure
+### Data structure
 
 The data schema and direct download links of the three datasets can be found in the following table:
 
@@ -69,9 +69,9 @@ The data schema and direct download links of the three datasets can be found in 
 |  | text0 | String | The raw text data of the answer
 
 
-## Scenario Structure
+## Scenario structure
 
-The Q&A matching example is presented through three types of files. The first type is a series of Jupyter/iPython Notebooks that show the step-by-step descriptions of the entire workflow. The second type is a set of Python files contain custom Python modules for phrase learning and feature extraction. These Python modules are generic enough to not only serve this example but also other use cases. The third type is a set of Python files to tune hyper-parameters and track model performance using the Azure Machine Learning Workbench.
+The Q&A matching example is presented through three types of files. The first type is a series of Jupyter Notebooks that show the step-by-step descriptions of the entire workflow. The second type is a set of Python files contain custom Python modules for phrase learning and feature extraction. These Python modules are generic enough to not only serve this example but also other use cases. The third type is a set of Python files to tune hyper-parameters and track model performance using the Azure Machine Learning Workbench.
 
 The files in this example are organized as follows.
 
@@ -93,11 +93,11 @@ The files in this example are organized as follows.
 
 **NOTE**: The series of notebooks is built under Python 3.5.
 
-### Data Ingestion & Transformation
+### Data ingestion  and transformation
 
-The three compiled datasets are stored in a Blob storage and could be retrieved in `Part_1_Data_Preparation.ipynb` notebook.  
+The three compiled datasets are stored in a Blob storage and are retrieved in `Part_1_Data_Preparation.ipynb` notebook.  
 
-Before training the text classification models, the text in the questions is cleaned and preprocessed to exclude code snippets. An unsupervised phrase learning is applied over the training material to learn informative multi-word sequences. These phrases are represented as single compound word units in the downstream BOWs featurization used by the text classification models.
+Before training the text classification models, the text in the questions is cleaned and preprocessed to exclude code snippets. An unsupervised phrase learning is applied over the training material to learn informative multi-word sequences. These phrases are represented as single compound word units in the downstream Bag-of-Words (BOWs) featurization used by the text classification models.
 
 The detailed step-by-step descriptions of text preprocessing and phrase learning can be found in the Notebooks `Part_1_Data_Preparation.ipynb` and `Part_2_Phrase_Learning.ipynb`, respectively.
 
@@ -120,13 +120,13 @@ The evaluation is demonstrated in `Part_3_Model_Training_and_Evaluation.ipynb`.
 
 ## Conclusion
 
-This example highlights how to use well-known text analytics techniques, such as phrase learning and text classification, to produce a robust model. It also showcases how Azure Machine Learning Workbench can help with interactive development and track model performance. 
+This example highlights how to use well-known text analytics techniques, such as phrase learning and text classification, to produce a robust model. It also showcases how Azure Machine Learning Workbench can help with interactive solution development and track model performance. 
 
 Some key highlights of this example are:
 
 - The question and answer matching problem can be effectively solved with phrase learning and text classification models.
-- Azure Machine Learning Workbench provides the capability of interactive development through Jupyter Notebook.
-- Azure Machine Learning Workbench manages the run history and learned models, and logs the evaluation metrics. It enables data scientist to quickly tune hyper-parameters and identify the best performing models.
+- Demonstrating interactive model development with Azure Machine Learning Workbench and Jupyter Notebook.
+- Azure Machine Learning Workbench manages the run history and learned models with logging the evaluation metrics for comparison purposes. These features enables quick hyper-parameter tuning and helps identify the best performing models.
 
 
 ## References
