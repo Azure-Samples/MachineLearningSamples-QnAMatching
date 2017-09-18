@@ -37,7 +37,7 @@ This example uses the [Posts data (10 GB)](https://archive.org/download/stackexc
 
 The `PostTypeId` field in the Posts data indicates whether a post is a `Question` or an `Answer`. The `PostLinkTypeId` field in the PostLinks data indicates whether two posts are linked or duplicate. Question posts typically include some tags, which are keywords that categorize a question with other similar/duplicate questions. There are some tags with high frequency, such as `javascript`, `java`, `c#`, `php` etc., consist of a larger number of question posts. In this example, a subset of Q&A pairs with the `javascript` tag is extracted.
 
-Additionionally, a question post may be related to multiple answer posts or duplicate question posts. To construct a list of FAQ from these two datasets, some data collection criteria are considered. The three sets of compiled data are selected using a SQL script, which is not included in this example. The resulting data description is as follows:
+Additionally, a question post may be related to multiple answer posts or duplicate question posts. To construct a list of FAQ from these two datasets, some data collection criteria are considered. The three sets of compiled data are selected using a SQL script, which is not included in this example. The resulting data description is as follows:
 
 - `Original Questions (Q)`: Question posts are asked and answered on Stack Overflow site.
 - `Duplications (D)`: Question posts duplicate other pre-existing questions (`PostLinkTypeId = 3`), which are the original questions. Duplications are considered as semantically equivalent to the original questions in the sense that the answer provided to the original question also answers the new duplicate question.
