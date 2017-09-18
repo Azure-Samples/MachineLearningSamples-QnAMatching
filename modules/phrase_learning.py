@@ -340,7 +340,7 @@ def ApplyPhraseRewrites(rankedNgrams,textData,learnedPhrases,
     return
 
 # run the full iterative phrase learning process.
-def ApplyPhraseLearning(textData,learnedPhrases,maxNumPhrases,maxPhraseLength,maxPhrasesPerIter,minCount,functionwordHash,blacklistHash={},verbose=False):
+def ApplyPhraseLearning(textData, learnedPhrases, maxNumPhrases=200, maxPhraseLength=7, maxPhrasesPerIter=50, minCount=5, functionwordHash, blacklistHash={}, verbose=False):
     
     stop = 0
     iterNum = 0
