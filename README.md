@@ -1,4 +1,4 @@
-# Q & A Matching
+# QnA Matching
 
 
 ## Link to the Microsoft DOCS site
