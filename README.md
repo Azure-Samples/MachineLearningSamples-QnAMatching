@@ -4,7 +4,7 @@
 ## Link to the Microsoft DOCS site
 
 The detailed documentation for this Q & A matching example includes the step-by-step walk-through:
-[https://review.docs.microsoft.com/en-us/azure/machine-learning/preview/scenario-qna-matching](https://review.docs.microsoft.com/en-us/azure/machine-learning/preview/scenario-qna-matching)
+[https://docs.microsoft.com/azure/machine-learning/preview/scenario-qna-matching](https://docs.microsoft.com/azure/machine-learning/preview/scenario-qna-matching)
 
 
 ## Link to the Gallery GitHub repository
