@@ -14,7 +14,7 @@ dependencies:
     - notebook
     - nltk
     # The API for Azure Machine Learning Model Management Service.
-    - azure-ml-api-sdk==0.1.0a9
+    - azure-ml-api-sdk==0.1.0a11
 
     # Helper utilities for calculating dataprofiles from Pandas DataFrames.
     - https://azuremldownloads.blob.core.windows.net/wheels/latest/azureml.pyrecipes.dataframe-1.0.12-py3-none-any.whl?sv=2016-05-31&si=ro-2017&sr=c&sig=xnUdTm0B%2F%2FfknhTaRInBXyu2QTTt8wA3OsXwGVgU%2BJk%3D
