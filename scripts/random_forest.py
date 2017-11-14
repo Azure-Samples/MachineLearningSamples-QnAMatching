@@ -18,6 +18,8 @@ from modules.feature_extractor import (tokensToIds, countMatrix, priorProbabilit
 from naive_bayes import (rank)
 warnings.filterwarnings("ignore")
 
+run_logger = get_azureml_logger()
+run_logger.log('amlrealworld.QnA-matching.random-forest','true')
 
 #########################################
 # User Defined Functions

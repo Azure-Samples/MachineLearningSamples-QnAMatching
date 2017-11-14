@@ -15,6 +15,9 @@ from modules.feature_extractor import (tokensToIds, countMatrix, priorProbabilit
                                        wordProbabilityNotinAnswer, normalizeTF, softmax)
 warnings.filterwarnings("ignore")
 
+run_logger = get_azureml_logger()
+run_logger.log('amlrealworld.QnA-matching.naive-bayes','true')
+
 
 
 #########################################

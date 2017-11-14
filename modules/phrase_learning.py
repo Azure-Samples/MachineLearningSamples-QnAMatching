@@ -5,6 +5,10 @@
 import pandas as pd
 import numpy as np
 import re, nltk, time, gc, math
+from azureml.logging import get_azureml_logger
+
+run_logger = get_azureml_logger()
+run_logger.log('amlrealworld.QnA-matching.phrase-learning','true')
 
 
 def CleanAndSplitText(frame):

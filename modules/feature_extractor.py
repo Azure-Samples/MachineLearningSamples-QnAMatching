@@ -4,6 +4,10 @@
 
 import pandas as pd
 import numpy as np
+from azureml.logging import get_azureml_logger
+
+run_logger = get_azureml_logger()
+run_logger.log('amlrealworld.QnA-matching.feature-extractor','true')
 
 
 # get Token to ID mapping: {Token: tokenId}
