@@ -92,7 +92,7 @@ def CleanAndSplitText(frame):
                     # If the last word ends in a period then remove the period
                     lastWord = regexPeriod.sub("", words[last])
                     # If the last word is an abbreviation like "U.S."
-                    # then add the word final perios back on
+                    # then add the word final period back on
                     if "\." in lastWord:
                         lastWord += "."
                     phraseOut += lastWord    
@@ -105,7 +105,7 @@ def CleanAndSplitText(frame):
     
     return frameOut
 
-# count the number of occurances of all 2-gram, 3-ngram, and 4-gram word sequences.
+# count the number of occurrences of all 2-gram, 3-ngram, and 4-gram word sequences.
 def ComputeNgramStats(textData,functionwordHash,blacklistHash):
     
     # Create an array to store the total count of all ngrams up to 4-grams
@@ -124,7 +124,7 @@ def ComputeNgramStats(textData,functionwordHash,blacklistHash):
     # for phrase modeling. The expression says words in phrases
     # must either:
     # (1) contain an alphabetic character, or 
-    # (2) be the single charcater '&', or
+    # (2) be the single character '&', or
     # (3) be a one or two digit number
     reWordIsValid = re.compile('[A-Za-z]|^&$|^\d\d?$')
     
@@ -154,7 +154,7 @@ def ComputeNgramStats(textData,functionwordHash,blacklistHash):
             word = wordArray[j]
 
             # Only bother counting the ngrams that start with a valid content word
-            # i.e., valids words not in the function word list or the black list
+            # i.e., valid words not in the function word list or the black list
             if ( ( word not in functionwordHash ) and ( word not in blacklistHash ) and validArray[j] ):
 
                 # Initialize ngram string with first content word and add it to unigram counts
@@ -236,7 +236,7 @@ def ApplyPhraseRewrites(rankedNgrams,textData,learnedPhrases,
     
     # This function will consider at most maxRewrite 
     # new phrases to be added into the learned phrase 
-    # list as specified by the calling fuinction
+    # list as specified by the calling function
     maxRewrite=maxPhrasesToAdd
 
     # If the remaining number of proposed ngram phrases is less 
@@ -475,7 +475,7 @@ def ApplyPhraseRewritesInPlace(textFrame, textColumnName, phraseRules):
                 rightConflictHash[leftWord] = 1
                 prevConflictHash[outputPhrase] = 1           
                 
-                # Add extra space to input an output versions of the current phrase 
+                # Add extra space to input and output versions of the current phrase 
                 # to make the regex rewrite easier
                 outputPhrase = " " + outputPhrase
                 lastAddedPhrase = " " + nextPhrase
@@ -509,7 +509,7 @@ def ApplyPhraseRewritesInPlace(textFrame, textColumnName, phraseRules):
             
             # Apply the regex over the full data set
             for i in range(0,numLines):
-                # The regex substituion looks up the output string rewrite  
+                # The regex substitution looks up the output string rewrite  
                 # in the hash table for each matched input phrase regex
                 textOutput[i] = regexPhrase.sub(lambda mo: phraseRewriteHash[mo.string[mo.start():mo.end()]], textOutput[i]) 
     
